@@ -1,0 +1,52 @@
+---
+title: "Data Import"
+output: github_document
+---
+
+```{r}
+library(tidyverse)
+library(readxl)
+```
+
+## Data Import: CSVs
+
+Let's import data usig the 'readr' package.
+
+```{r}
+litters_df = read_csv("data/FAS_litters.csv")
+litters_df = janitor::clean_names(litters_df)
+```
+
+Look at the data
+
+```{r}
+litters_df
+
+head(litters_df)
+tail(litters_df)
+```
+
+View data in new window:
+```{r, eval = FALSE}
+view(litters_df)
+#Causes issues when knitting. Don't include in final code if not needed, but helpful for viewing data.
+```
+
+```{r}
+skimr::skim(litters_df)
+```
+
+'read_csv' options..
+```{r, eval = FALSE}
+read_csv("data/FAS_litters.csv", na = c("", "NA" , 999, 88), skip = 2)
+```
+
+## Data Import: Other file formats
+
+We need to read in an excel spreadsheet
+
+```{r}
+mlb_df = read_excel("data/mlb11.xlsx")
+```
+
+
